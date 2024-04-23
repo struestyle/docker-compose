@@ -1,3 +1,5 @@
+# image de linuxserver.io qui permet d'heberger un aridrop pour android sur un réseau local
+
 ---
 services:
   pairdrop:
