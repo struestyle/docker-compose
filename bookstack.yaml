@@ -9,7 +9,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - APP_URL=http://10.16.2.12:6875
+      - APP_URL=http://3T.local:6875
       - DB_HOST=bookstack_db
       - DB_PORT=3306
       - DB_USER=bookstack
