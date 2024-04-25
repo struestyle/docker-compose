@@ -1,0 +1,7 @@
+services:
+  ansible:
+    image: alpinelinux/ansible:latest
+    container_name: ansible
+    ports:
+      - 2222:22
+    restart: unless-stopped
