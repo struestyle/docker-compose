@@ -7,5 +7,6 @@ services:
       - '3000:3000'
     volumes:
       - grafana-storage:/var/lib/grafana
+      
 volumes:
   grafana-storage: {}
