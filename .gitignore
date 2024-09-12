@@ -1,6 +1,5 @@
-# volumes
 zabbix
 jellyfin
 bookstack_app_data
 homarr
-**/volume_*/
+traefik
