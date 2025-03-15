@@ -1,0 +1,27 @@
+services:
+  awx:
+    image: ansible/awx:17.1.0
+    container_name: awx
+    ports:
+      - "8080:8052"
+    environment:
+      - PG_HOST=postgres
+      - PG_PORT=5432
+      - PG_DATABASE=awx
+      - PG_USERNAME=awx
+      - PG_PASSWORD=awxpass
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:10
+    container_name: awx_postgres
+    environment:
+      - POSTGRES_DB=awx
+      - POSTGRES_USER=awx
+      - POSTGRES_PASSWORD=awxpass
+    volumes:
+      - awx_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  awx_postgres_data:
