@@ -1,0 +1,67 @@
+volumes:
+  vaultwarden_data:
+    name: vaultwarden-data
+
+services:
+#   traefik:
+#     image: traefik:v3.0
+#     container_name: traefik
+#     restart: unless-stopped
+#     ports:
+#       - 443:443
+#       - 80:80
+#       - 8080:8080
+#     volumes:
+# #      - /etc/localtime:/etc/localtime:ro
+#       - /var/run/docker.sock:/var/run/docker.sock:ro
+# #      - ./traefik/traefik.yaml:/etc/traefik/traefik.yaml
+#       - ./traefik/volume_traefik/letsencrypt:/letsencrypt
+#     command:
+#       - --entryPoints.http.address=:80
+#       - --entryPoints.https.address=:443
+#       - --entryPoints.http.http.redirections.entryPoint.to=https
+#       - --entryPoints.http.http.redirections.entryPoint.scheme=https
+# #      - --api.insecure=true
+# #      - --api.dashboard=true
+#       - --certificatesResolvers.myresolver.acme.email=youremail
+#       - --certificatesResolvers.myresolver.acme.storage=/letsencrypt/acme.json
+#       - --certificatesResolvers.myresolver.acme.httpChallenge.entryPoint=http
+#       - --providers.docker.exposedbydefault=true
+# #    labels:
+# #      - "traefik.http.services.traefik.loadbalancer.server.port=8080"
+
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    volumes:
+#      - /etc/localtime:/etc/localtime:ro
+      - vaultwarden_data:/data/
+    restart: unless-stopped
+    ports:
+      - 80:80
+    environment:
+      - SIGNUPS_ALLOWED="false"
+    #   - DOMAIN=https://srv-vault.hostname.local
+      - SHOW_PASSWORD_HINT="false"
+      - TIME_ZONE="Europe/Paris"
+      - WEBSOCKET_ENABLED="true"
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.docker.network=traefik"
+    #   # UI
+    #   - "traefik.http.routers.vaultwarden-ui.rule=Host(`srv-vault.hostname.local`)"
+    #   - "traefik.http.routers.vaultwarden-ui.entrypoints=https"
+    #   - "traefik.http.routers.vaultwarden-ui.tls=true"
+    #   - "traefik.http.routers.vaultwarden-ui.tls.certresolver=myresolver"
+    #   - "traefik.http.services.vaultwarden-ui.loadbalancer.server.port=80"
+    #   - "traefik.http.services.vaultwarden-ui.loadbalancer.passhostheader=true"
+    #   - "traefik.http.routers.vaultwarden-ui.service=vaultwarden-ui"
+    #   # WS
+    #   - "traefik.http.routers.vaultwarden-ws.rule=Host(`srv-vault.hostname.local`) && Path(`/notifications/hub`)"
+    #   - "traefik.http.routers.vaultwarden-ws.entrypoints=https"
+    #   - "traefik.http.services.vaultwarden-ws.loadbalancer.server.port=3012"
+    #   - "traefik.http.routers.vaultwarden-ws.tls=true"
+    #   - "traefik.http.routers.vaultwarden-ws.tls.certresolver=myresolver"
+    #   - "traefik.http.routers.vaultwarden-ws.service=vaultwarden-ws"
+
+      

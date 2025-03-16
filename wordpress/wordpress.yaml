@@ -2,6 +2,7 @@ services:
 
   wordpress:
     image: wordpress
+    container_name: wordpress
     restart: always
     ports:
       - 80:80
@@ -16,6 +17,7 @@ services:
 
   db:
     image: mysql:8.0
+    container_name: wordpress-db
     restart: always
     environment:
       MYSQL_DATABASE: exampledb

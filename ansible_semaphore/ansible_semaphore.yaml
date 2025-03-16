@@ -3,6 +3,7 @@ services:
   #postgres:
     #restart: unless-stopped
     #image: postgres:14
+    #container_name: postgres
     #hostname: postgres
     #volumes: 
     #  - semaphore-postgres:/var/lib/postgresql/data
@@ -14,6 +15,7 @@ services:
   mysql:
     restart: unless-stopped
     image: mysql:8.0
+    container_name: mysql_semaphore
     hostname: mysql
     volumes:
       - semaphore-mysql:/var/lib/mysql
@@ -24,6 +26,7 @@ services:
       MYSQL_PASSWORD: Test123
   semaphore:
     restart: unless-stopped
+    container_name: semaphore
     ports:
       - 3000:3000
     image: semaphoreui/semaphore:latest

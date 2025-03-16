@@ -1,5 +1,6 @@
 volumes:
-  dashy_data:
+  dashy-data:
+    name: dashy-data
 
 services:
   dashy:

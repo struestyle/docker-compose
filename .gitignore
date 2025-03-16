@@ -3,3 +3,5 @@ jellyfin
 bookstack_app_data
 homarr
 traefik
+**/volume_*
+*.env

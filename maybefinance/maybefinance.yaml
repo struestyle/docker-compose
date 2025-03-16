@@ -27,9 +27,9 @@
 #
 
 services:
-
   app:
     image: ghcr.io/maybe-finance/maybe:latest
+    container_name: maybe-finance
     volumes:
       - app-storage:/rails/storage
     ports:
@@ -51,6 +51,7 @@ services:
 
   postgres:
     image: postgres:16
+    container_name: postgresql-maybe-finance
     restart: unless-stopped
     volumes:
       - postgres-data:/var/lib/postgresql/data

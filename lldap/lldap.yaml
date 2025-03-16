@@ -5,6 +5,7 @@ volumes:
 services:
   lldap:
     image: lldap/lldap:stable
+    container_name: lldap
     ports:
       # For LDAP, not recommended to expose, see Usage section.
       #- "3890:3890"
