@@ -1,6 +1,7 @@
 services:
   awx:
     image: ansible/awx:17.1.0
+    restart: unless-stopped
     container_name: awx
     ports:
       - "8080:8052"
@@ -15,6 +16,7 @@ services:
 
   postgres:
     image: postgres:10
+    restart: unless-stopped
     container_name: awx_postgres
     environment:
       - POSTGRES_DB=awx

@@ -6,7 +6,7 @@ services:
   dashy:
     image: lissy93/dashy:latest
     container_name: dashy
-    restart: always
+    restart: unless-stopped
     ports: 
       - 80:80
     volumes: 
