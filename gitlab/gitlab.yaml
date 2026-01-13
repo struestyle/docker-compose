@@ -4,9 +4,8 @@ services:
     container_name: gitlab
     restart: unless-stopped
     hostname: 'gitlab.hostname.local'
-    environment:
-      GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab.hostname.local:80'
+    env_file:
+      - ./gitlab.env
     ports:
       - '83:80'
       - '443:443'

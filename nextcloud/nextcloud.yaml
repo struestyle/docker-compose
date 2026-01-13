@@ -9,14 +9,8 @@ services:
       - "8080:80"  # Port exposé (modifiable selon vos besoins)
     volumes:
       - nextcloud_data:/var/www/html  # Stockage persistant des fichiers et config
-    environment:
-      - MYSQL_HOST=db  # Nom du service de la base de données
-      - MYSQL_DATABASE=nextcloud  # Nom de la base de données
-      - MYSQL_USER=nextcloud  # Utilisateur de la base
-      - MYSQL_PASSWORD=your_secure_password  # Mot de passe sécurisé
-      - NEXTCLOUD_ADMIN_USER=admin  # Utilisateur admin pour l'installation
-      - NEXTCLOUD_ADMIN_PASSWORD=your_admin_password  # Mot de passe admin
-      - NEXTCLOUD_TRUSTED_DOMAINS=localhost cidev.discorads.com  # Domaines autorisés
+    env_file:
+      - ./nextcloud.env
     depends_on:
       - db
     networks:
@@ -29,11 +23,8 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW  # Optimisations pour Nextcloud
     volumes:
       - db_data:/var/lib/mysql  # Stockage persistant de la base
-    environment:
-      - MYSQL_ROOT_PASSWORD=your_root_password  # Mot de passe root de MariaDB
-      - MYSQL_DATABASE=nextcloud  # Doit correspondre à MYSQL_DATABASE ci-dessus
-      - MYSQL_USER=nextcloud  # Doit correspondre à MYSQL_USER ci-dessus
-      - MYSQL_PASSWORD=your_secure_password  # Doit correspondre à MYSQL_PASSWORD ci-dessus
+    env_file:
+      - ./db.env
     networks:
       - nextcloud_net
 

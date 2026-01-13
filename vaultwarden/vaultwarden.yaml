@@ -39,8 +39,8 @@ services:
     restart: unless-stopped
     ports:
       - 80:80
-    environment:
-      - SIGNUPS_ALLOWED="false"
+    env_file:
+      - ./vaultwarden.env
     #   - DOMAIN=https://srv-vault.hostname.local
       - SHOW_PASSWORD_HINT="false"
       - TIME_ZONE="Europe/Paris"

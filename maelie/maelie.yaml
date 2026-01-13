@@ -11,20 +11,8 @@ services:
           memory: 1000M # 
     volumes:
       - mealie-data:/app/data/
-    environment:
-      # Set Backend ENV Variables Here
-      ALLOW_SIGNUP: "false"
-      PUID: 1000
-      PGID: 1000
-      TZ: America/Anchorage
-      BASE_URL: http://localhost
-      # Database Settings
-      DB_ENGINE: postgres
-      POSTGRES_USER: mealie
-      POSTGRES_PASSWORD: mealie
-      POSTGRES_SERVER: postgres
-      POSTGRES_PORT: 5432
-      POSTGRES_DB: mealie
+    env_file:
+      - ./mealie.env
     depends_on:
       postgres:
         condition: service_healthy
@@ -35,10 +23,8 @@ services:
     restart: unless-stopped
     volumes:
       - mealie-pgdata:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: mealie
-      POSTGRES_USER: mealie
-      PGUSER: mealie
+    env_file:
+      - ./postgres.env
     healthcheck:
       test: ["CMD", "pg_isready"]
       interval: 30s

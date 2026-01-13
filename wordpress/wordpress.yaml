@@ -7,11 +7,8 @@ services:
     ports:
       - 80:80
       - 443:443
-    environment:
-      WORDPRESS_DB_HOST: db
-      WORDPRESS_DB_USER: exampleuser
-      WORDPRESS_DB_PASSWORD: yourpassword
-      WORDPRESS_DB_NAME: exampledb
+    env_file:
+      - ./wordpress.env
     volumes:
       - wordpress:/var/www/html
 
@@ -19,11 +16,8 @@ services:
     image: mysql:8.0
     container_name: wordpress-db
     restart: unless-stopped
-    environment:
-      MYSQL_DATABASE: exampledb
-      MYSQL_USER: exampleuser
-      MYSQL_PASSWORD: yourpassword
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    env_file:
+      - ./db.env
     volumes:
       - db:/var/lib/mysql
 

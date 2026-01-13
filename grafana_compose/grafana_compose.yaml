@@ -23,13 +23,8 @@ services:
       # - /etc/ssl/cert-key.pem/:/etc/ssl/cert-key.pem  # (optional) if you're using self-signed certs
     # (Optional) when using certificate
     # command: influxd --tls-cert=/etc/ssl/cert.pem --tls-key=/etc/ssl/cert-key.pem  # (optional) if you're using self-signed certs
-    environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=root
-      - DOCKER_INFLUXDB_INIT_PASSWORD=Test123Test123
-      - DOCKER_INFLUXDB_INIT_ORG=ll.local
-      - DOCKER_INFLUXDB_INIT_BUCKET=proxmox
-      - DOCKER_INFLUXDB_INIT_RETENTION=1w  # (optional) configure data retention 1 week
+    env_file:
+      - ./influxdb.env
     # (Optional) add admin token
     #   - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=my-super-secret-auth-token  # (optional) set admin token
     # (Optional) when using traefik

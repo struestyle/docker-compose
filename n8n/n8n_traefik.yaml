@@ -5,11 +5,7 @@ services:
     restart: unless-stopped
     ports:
       - 80:5678
-    environment:
-      - N8N_HOST=localhost
-      - N8N_PORT=5678
-      - N8N_PROTOCOL=http
-      - NODE_ENV=production
-      - WEBHOOK_URL=http://localhost/
+    env_file:
+      - ./n8n.env
 #    volumes:
 #      - ./volume_n8n/data:/home/node/.n8n:mode=777

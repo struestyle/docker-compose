@@ -1,5 +1,10 @@
+param(
+    [Parameter(HelpMessage = "Profondeur de recherche récursive (défaut: 1)")]
+    [int]$Depth = 1
+)
+
 # Définir l'extension des fichiers YAML à traiter
-$files = Get-ChildItem -Recurse -Include "docker-compose.yml", "docker-compose.yaml"
+$files = Get-ChildItem -Path "." -Recurse -Depth $Depth -Include "*.yaml", "*.yml" -File
 
 foreach ($file in $files) {
     Write-Host "Traitement de : $($file.FullName)" -ForegroundColor Cyan
